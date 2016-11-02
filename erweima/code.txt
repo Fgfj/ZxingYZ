@@ -1,0 +1,38 @@
+
+   <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="com.android.browser.permission.READ_HISTORY_BOOKMARKS"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+
+<activity
+            android:name="testvh.yz.com.karics.karics.library.zxing.android.CaptureActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" />
+
+
+
+ public void go(View view) {
+        Intent intentthiss = new Intent(this,CaptureActivity.class);
+        startActivityForResult(intentthiss,REQUEST_CODE);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        //我们需要的结果返回
+        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            //拿到二维码扫描后的数据
+
+            //result就是二维码扫描的结果。
+            String content = data.getStringExtra("codedContent");
+            Toast.makeText(this,content,Toast.LENGTH_SHORT).show();
+//
+//            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT)
+//                    .show();
+        }
+    }
